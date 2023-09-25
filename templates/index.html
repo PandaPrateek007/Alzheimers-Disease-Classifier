@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title>Alzheimer's Disease Detection and Classification</title>
+  <style>
+    body {
+      background-color: rgb(27, 107, 147);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: rgb(27, 107, 147);
+      padding: 30px;
+      text-align: center;
+      width: 90%;
+      height: 90%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left-half {
+      flex: 1;
+      position:absolute;
+      right: 70%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* .right-half {
+      flex: 1;
+      position:absolute;
+      left: 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    } */
+    .right-half {
+    flex: 1;
+    position: absolute;
+    left: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .right-half h2 {
+    font-size: 2.5em; /* Increase the font size for h2 element */
+    margin-bottom: 20px;
+  }
+
+  .right-half p {
+    font-size: 1.8em; /* Increase the font size for paragraphs */
+  }
+
+  .right-half ul {
+    font-size: 1.8em; /* Increase the font size for unordered lists */
+  }
+
+  .right-half li {
+    font-size: 1.0em; /* Increase the font size for list items */
+    margin-bottom: 10px;
+  }
+
+
+    h1 {
+      color: #fff;
+      font-weight: 600;
+      font-size: 3.2em;
+      margin-bottom: 30px;
+    }
+
+    form {
+      margin-bottom: 30px;
+    }
+
+    .btn-success {
+      background-color: #04aa6d;
+      border-color: #04aa6d;
+      color: white;
+      border-radius: 5px;
+      width: 200px;
+      height: 50px;
+      font-weight: 600;
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+
+    .img-thumbnail {
+      border-radius: 10px;
+      width: 250px;
+      height: 250px;
+      margin-right: 50px;
+    }
+
+    h4 {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    mark {
+      background-color: #04aa6d;
+      color: white;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+
+    .disease-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .final_prediction{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: left;
+      margin-left: -20%;
+      margin-top: 40px;
+    }
+    /* Media query for small screens */
+    /* @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .left-half,
+      .right-half {
+        flex: none;
+      }
+    } */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-half">
+      <h1>ALZHEIMER'S DISEASE PREDICTION</h1>
+      <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" class="form-control">
+        <br>
+        <input type="submit" class="btn btn-success" value="Predict">
+      </form>
+      <div class="disease-section">
+        <img src="{{ user_image }}" alt="User Image" class="img-thumbnail">
+        
+        <div class="disease-section final_prediction" >
+          <h4>Disease name is <mark>{{disease}}</mark></h4>
+          <h4>Probability is: {{prob}}%</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-half">
+      <!-- Information about Alzheimer's disease -->
+      <div class="description">
+        <h2>What is Alzheimer's Disease?</h2>
+        <p>
+          Alzheimer's disease is a progressive neurological disorder that affects the brain and leads to a gradual decline in cognitive and memory functions. It is the most common cause of dementia among older adults.
+        </p>
+      </div>
+ 
+      <div class="causes">
+        <h2>Causes of Alzheimer's Disease</h2>
+        <p>
+          The exact cause of Alzheimer's disease is not fully understood, but it is believed to be a result of a combination of genetic, environmental, and lifestyle factors. The buildup of abnormal protein deposits in the brain, including beta-amyloid plaques and tau tangles, is associated with the disease's progression.
+        </p>
+      </div>
+
+      <div class="treatment">
+        <h2>Treatment of Alzheimer's Disease</h2>
+        <p>
+          As of now, there is no cure for Alzheimer's disease, and treatment focuses on managing symptoms, slowing down the progression, and improving the quality of life for affected individuals. Medications, cognitive stimulation, and support from caregivers are often utilized in managing the disease.
+        </p>
+      </div>
+  
+      <div class="categories">
+        <h2>Categories of Alzheimer's Disease</h2>
+        <p>
+          "Demented" is a term used to describe individuals experiencing a state of cognitive decline and memory impairment, commonly associated with conditions like Alzheimer's disease.
+          Based on the severity of symptoms and the decline in cognitive abilities Alzheimer's disease is often classified into following four stages:  Non-Demented, Very Mild Demented , Mild Demented , Moderate Demented.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
